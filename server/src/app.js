@@ -1,15 +1,26 @@
 import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
-// Middleware
 app.use(express.json());
+app.use(cookieParser());
 
-// Test Route
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
+
+app.use("/api/auth", authRoutes);
+
 app.get("/", (req, res) => {
-  res.status(200).json({
+  res.json({
     success: true,
-    message: "Welcome to Bakery Shop API 🍞",
+    message: "Bakery Shop API Running",
   });
 });
 
