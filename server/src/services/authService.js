@@ -19,12 +19,21 @@ export const registerService = async (userData) => {
     password: hashedPassword,
     phone,
     address,
+    role: "customer",
   });
 
   const token = generateToken(user._id, user.role);
   user.password = undefined; // this excludes password from the response
 
-  return { user, token };
+  return {
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+    token,
+  };
 };
 
 
