@@ -4,6 +4,7 @@ import {
   loginUser,
   logoutUser,
   registerUser,
+  updateProfile,
 } from "../services/authService";
 
 const AuthContext = createContext();
@@ -47,8 +48,13 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await logoutUser();
-
     setUser(null);
+  };
+
+  const updateUser = async (formData) => {
+    const data = await updateProfile(formData);
+    setUser(data.user);
+    return data;
   };
 
   return (
@@ -60,6 +66,7 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
+        updateUser,
       }}
     >
       {children}

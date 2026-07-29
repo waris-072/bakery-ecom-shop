@@ -58,3 +58,19 @@ export const loginService = async ({ email, password }) => {
     token,
   };
 };
+
+export const updateProfileService = async (userId, data) => {
+  const user = await User.findById(userId);
+
+  if (!user) {
+    throw new Error("User not found.");
+  }
+
+  user.name = data.name;
+  user.phone = data.phone;
+  user.address = data.address;
+
+  await user.save();
+
+  return user;
+};

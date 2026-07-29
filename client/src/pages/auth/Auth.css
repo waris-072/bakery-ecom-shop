@@ -187,6 +187,32 @@
   box-shadow: 0 0 6px rgba(76, 175, 80, 0.2);
 }
 
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  resize: vertical;
+  min-height: 110px;
+  outline: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group textarea:focus {
+  border-color: #ff9800;
+}
+
+textarea.input-error {
+  border: 2px solid #e53935;
+}
+
+textarea.input-success {
+  border: 2px solid #43a047;
+}
+
 /* ===== Responsive ===== */
 
 @media (max-width: 500px) {
