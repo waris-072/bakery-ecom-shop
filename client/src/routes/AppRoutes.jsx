@@ -7,14 +7,17 @@ import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 // Admin Components
 import Dashboard from "../pages/admin/Dashboard";
-import AdminCategories from "../pages/admin/AdminCategories";
-import AdminProducts from "../pages/admin/Products";
+import ManageCategories from "../pages/admin/ManageCategories";
+import ManageProducts from "../pages/admin/ManageProducts";
 import Orders from "../pages/admin/Orders";
+import AddProduct from "../pages/admin/AddProduct";
+import EditProduct from "../pages/admin/EditProduct";
+
 // Customer Components
 import Home from "../pages/customer/Home";
 import Profile from "../pages/customer/Profile";
 import Products from "../pages/customer/Products";
-import Categories from "../pages/admin/AdminCategories";
+import Categories from "../pages/customer/Categories";
 import ProductDetails from "../pages/customer/ProductDetails";
 import Cart from "../pages/customer/Cart";
 import Checkout from "../pages/customer/Checkout";
@@ -61,9 +64,12 @@ function AppRoutes() {
         >
 
           <Route path="/admin" element={<Dashboard />} />
-          <Route path="/admin/categories" element={<AdminCategories />} />
-          <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/categories" element={<ManageCategories />} />
           <Route path="/admin/orders" element={<Orders />} />
+
+          <Route path="/admin/products" element={<ManageProducts />} />
+          <Route path="/admin/products/add" element={<AddProduct />} />
+          <Route path="/admin/products/edit/:id" element={<EditProduct />} />
 
         </Route>
 

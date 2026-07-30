@@ -11,7 +11,6 @@ function AdminLayout() {
             <div className="admin-content">
 
                 <Topbar />
-
                 <Outlet />
 
             </div>

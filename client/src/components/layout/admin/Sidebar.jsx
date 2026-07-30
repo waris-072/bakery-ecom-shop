@@ -1,6 +1,8 @@
+import { NavLink } from "react-router-dom";
+
 function Sidebar() {
   return (
-    <h1>Sidebar </h1>
+    <NavLink to="/admin/products"> Manage Products </NavLink>
   );
 }
 

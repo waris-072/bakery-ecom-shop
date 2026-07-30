@@ -1,0 +1,98 @@
+.table-wrapper {
+  margin-top: 25px;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table th {
+  background: #ff9800;
+  color: white;
+  padding: 16px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.product-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-table tr:hover {
+  background: #fff8f0;
+}
+
+.product-image {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status.available {
+  background: #d4edda;
+  color: #198754;
+}
+
+.status.out-of-stock {
+  background: #fde2e2;
+  color: #dc3545;
+}
+
+.status.hidden {
+  background: #ececec;
+  color: #666;
+}
+
+.table-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.edit-btn {
+  background: #fff3cd;
+  color: #ff9800;
+}
+
+.edit-btn:hover {
+  background: #ff9800;
+  color: white;
+}
+
+.delete-btn {
+  background: #fde2e2;
+  color: #dc3545;
+}
+
+.delete-btn:hover {
+  background: #dc3545;
+  color: white;
+}
