@@ -66,8 +66,8 @@ function Navbar() {
         }
       >
         <NavLink to="/" onClick={()=>setMenuOpen(false)} > Home </NavLink>
-
-        {/*Categories dropdown */}
+        <NavLink to="/products" onClick={()=>setMenuOpen(false)} > Products </NavLink>
+        
         {/* Categories dropdown */}
 
         <div className="category-menu">
@@ -96,7 +96,6 @@ function Navbar() {
           )}
         </div>
 
-        <NavLink to="/products" onClick={()=>setMenuOpen(false)} > Products </NavLink>
         <NavLink to="/about" onClick={()=>setMenuOpen(false)} > About </NavLink>
         <NavLink to="/contact" onClick={()=>setMenuOpen(false)} > Contact </NavLink>
 
