@@ -12,7 +12,7 @@ import ManageProducts from "../pages/admin/ManageProducts";
 import Orders from "../pages/admin/Orders";
 import AddProduct from "../pages/admin/AddProduct";
 import EditProduct from "../pages/admin/EditProduct";
-
+import Customers from "../pages/admin/Customers"
 // Customer Components
 import Home from "../pages/customer/Home";
 import Profile from "../pages/customer/Profile";
@@ -70,6 +70,7 @@ function AppRoutes() {
           <Route path="/admin/products" element={<ManageProducts />} />
           <Route path="/admin/products/add" element={<AddProduct />} />
           <Route path="/admin/products/edit/:id" element={<EditProduct />} />
+          <Route path="/admin/customers" element={<Customers />} />
 
         </Route>
 

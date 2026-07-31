@@ -1,4 +1,4 @@
-/* Product form component */
+/* Tables styling form component */
 
 .product-form-card {
     max-width: 820px;
@@ -492,7 +492,7 @@
 
 
 /* Product Table Component */
-.product-table-container{
+.table-container{
     margin-top:30px;
     background:#fff;
     border-radius:18px;
@@ -500,33 +500,33 @@
     box-shadow:0 8px 24px rgba(0,0,0,.08);
 }
 
-.product-table{
+.table{
     width:100%;
     border-collapse:collapse;
 }
 
-.product-table thead{
+.table thead{
     background:#f7f7f7;
 }
 
-.product-table th{
+.table th{
     padding:18px;
     text-align:left;
     color:#444;
     font-size:15px;
 }
 
-.product-table td{
+.table td{
     padding:18px;
     border-top:1px solid #f1f1f1;
     vertical-align:middle;
 }
 
-.product-table tbody tr{
+.table tbody tr{
     transition:.25s;
 }
 
-.product-table tbody tr:hover{
+.table tbody tr:hover{
     background:#fffaf2;
 }
 
@@ -619,11 +619,11 @@
 
 @media(max-width:992px){
 
-.product-table-container{
+.table-container{
     overflow-x:auto;
 }
 
-.product-table{
+.table{
     min-width:900px;
 }
 

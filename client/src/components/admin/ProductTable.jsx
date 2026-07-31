@@ -16,8 +16,8 @@ function ProductTable({
     );
   }
   return (
-    <div className="product-table-container">
-      <table className="product-table">
+    <div className="table-container">
+      <table className="table">
 
         <thead>
           <tr>

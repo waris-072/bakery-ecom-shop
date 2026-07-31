@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import ProductForm from "../../components/admin/ProductForm";
 import { createProduct } from "../../services/productService";
+import Loader from "../../components/loader/Loader";
 
 function AddProduct() {
   const navigate = useNavigate();
@@ -23,7 +24,10 @@ function AddProduct() {
       setLoading(false);
     }
   };
-
+  
+  if (loading) {
+    return <Loader message="Creating product..." />;
+  }
   return (
     <ProductForm
       mode="create"

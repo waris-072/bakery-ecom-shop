@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import ProductForm from "../../components/admin/ProductForm";
 import { getProduct, updateProduct, } from "../../services/productService";
-
+import Loader from "../../components/loader/Loader";
 
 function EditProduct(){
     const { id } = useParams();
@@ -18,6 +18,8 @@ function EditProduct(){
         }
         catch(error){
             console.error(error);
+        } finally{
+            setLoading(false)
         }
     };
 
@@ -45,6 +47,10 @@ function EditProduct(){
         return <p>Loading product...</p>;
     }
 
+    if (loading) {
+    return <Loader message="Updating product..." />;
+    }
+    
     return(
         <ProductForm
             mode="edit"
