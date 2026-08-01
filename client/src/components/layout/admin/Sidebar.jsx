@@ -5,12 +5,40 @@ import {
   FaUsers,
   FaSignOutAlt,
   FaBreadSlice,
+  FaUserCircle
 } from "react-icons/fa";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import "./AdminLayout.css";
+import { useState } from "react";
+import Loader from "./../../loader/Loader";
 
 function Sidebar() {
+
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      setLoading(false); // Hide loader
+    }
+  };
+  if (loading) {
+    return (
+      <Loader
+        message="signing out..."
+      />
+    );
+  }
+
   return (
     <aside className="sidebar">
 
@@ -20,6 +48,19 @@ function Sidebar() {
       </div>
 
       <nav className="sidebar-nav">
+
+ 
+
+        <NavLink 
+          to="/admin/Profile"
+          end
+          className={({ isActive }) =>
+            isActive ? "nav-item active" : "nav-item"
+          }
+        >
+          <FaUserCircle />
+          Profile
+        </NavLink>
 
         <NavLink
           to="/admin"
@@ -64,7 +105,7 @@ function Sidebar() {
 
       </nav>
 
-      <button className="logout-btn">
+      <button className="logout-btn" onClick={handleLogout}>
         <FaSignOutAlt />
         Logout
       </button>

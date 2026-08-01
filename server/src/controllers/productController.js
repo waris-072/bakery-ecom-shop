@@ -1,4 +1,4 @@
-import { createProductService, getProductsService, getProductByIdService, updateProductService, deleteProductService } from "../services/productService.js";
+import { createProductService, getProductsService, getProductByIdService, updateProductService, deleteProductService, getProductDetailService } from "../services/productService.js";
 
 
 
@@ -86,6 +86,24 @@ export const deleteProductController = async (req, res) => {
   } catch (error) {
     res.status(
       error.message === "Product not found" ? 404 : 500
+    ).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const getProductDetailController = async (req, res) => {
+  try {
+    const product = await getProductDetailService(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    res.status(
+      error.message === "Product not found." ? 404 : 500
     ).json({
       success: false,
       message: error.message,

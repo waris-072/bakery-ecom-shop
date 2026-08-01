@@ -38,3 +38,7 @@ export const deleteProduct = async (id) => {
   return data;
 };
 
+export const getProductById = async (id) => {
+  const response = await api.get(`/products/${id}`);
+  return response.data;
+};

@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaShoppingBag, FaEdit, FaSave, FaTimes, } from "react-icons/fa";
 
 import useAuth from "../../hooks/useAuth";
 
 import { NAME_REGEX, PHONE_REGEX, } from "../../utils/validators";
-import "./customer-styling/Profile.css";
+import "./Admin.css";
 
 
-function Profile() {
+function AdminProfile() {
 
   const { user, updateUser } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [serverError, setServerError] = useState("");
-  
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const {
     register,
@@ -71,13 +67,11 @@ function Profile() {
         address:data.address,
       });
 
-      setSuccessMessage( "Profile updated successfully." );
+      setSuccessMessage(
+        "Profile updated successfully."
+      );
+
       setIsEditing(false);
-      if (location.state?.from) {
-        setTimeout(() => {
-          navigate(location.state.from);
-        }, 1000);
-      }
     }catch(error){
       setServerError(
         error.response?.data?.message ||
@@ -308,4 +302,4 @@ function ProfileItem({
   );
 }
 
-export default Profile;
+export default AdminProfile;

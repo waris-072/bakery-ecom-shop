@@ -7,6 +7,7 @@ import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 // Admin Components
 import Dashboard from "../pages/admin/Dashboard";
+import AdminProfile from "../pages/admin/AdminProfile";
 import ManageCategories from "../pages/admin/ManageCategories";
 import ManageProducts from "../pages/admin/ManageProducts";
 import Orders from "../pages/admin/Orders";
@@ -17,8 +18,7 @@ import Customers from "../pages/admin/Customers"
 import Home from "../pages/customer/Home";
 import Profile from "../pages/customer/Profile";
 import Products from "../pages/customer/Products";
-import Categories from "../pages/customer/Categories";
-import ProductDetails from "../pages/customer/ProductDetails";
+import MyOrders from "../pages/customer/MyOrders";
 import Cart from "../pages/customer/Cart";
 import Checkout from "../pages/customer/Checkout";
 import About from "../pages/customer/About";
@@ -39,9 +39,8 @@ function AppRoutes() {
       <Route element={<CustomerLayout />}>
 
         <Route path="/" element={<Home />} />
-        <Route path="/Categories" element={<Categories />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/orders" element={<MyOrders />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
@@ -54,7 +53,9 @@ function AppRoutes() {
           }
         />
 
+        </Route>
 
+        
         {/* Admin */}
         <Route element={
             <AdminRoute>
@@ -64,6 +65,7 @@ function AppRoutes() {
         >
 
           <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin/Profile" element={<AdminProfile />} />
           <Route path="/admin/categories" element={<ManageCategories />} />
           <Route path="/admin/orders" element={<Orders />} />
 
@@ -72,7 +74,7 @@ function AppRoutes() {
           <Route path="/admin/products/edit/:id" element={<EditProduct />} />
           <Route path="/admin/customers" element={<Customers />} />
 
-        </Route>
+
 
       </Route>
 

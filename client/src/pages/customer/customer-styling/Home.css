@@ -682,7 +682,7 @@
   }
 }
 
-/* Mobile landscape */
+/* Mobile landscape*/
 @media (max-width: 768px) {
   .hero {
     min-height: 70vh;
@@ -734,9 +734,11 @@
   .section-header {
     margin-bottom: 30px;
   }
-}
+} 
+
+
 /* Mobile phones - updated hero section */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .hero {
     min-height: 60vh;
     background-position: 65% center;
@@ -829,7 +831,7 @@
 }
 
 /* Extra small devices - even smaller text */
-@media (max-width: 400px) {
+@media (max-width: 576px) {
   .hero {
     min-height: 55vh;
   }

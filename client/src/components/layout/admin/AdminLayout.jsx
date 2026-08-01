@@ -32,11 +32,7 @@ function AdminLayout() {
         <Topbar {...topbarConfig }/>
 
         <div className="admin-page">
-          <Outlet
-            context={{
-                setTopbarConfig,
-            }}
-          />
+          <Outlet context={{ setTopbarConfig, }} />
         </div>
 
       </div>

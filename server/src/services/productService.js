@@ -97,3 +97,13 @@ export const deleteProductService = async (id) => {
   await Product.findByIdAndDelete(id);
 
 };
+
+export const getProductDetailService = async (id) => {
+  const product = await Product.findById(id);
+
+  if (!product) {
+    throw new Error("Product not found.");
+  }
+
+  return product;
+};

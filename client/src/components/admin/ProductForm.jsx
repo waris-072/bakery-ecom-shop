@@ -141,27 +141,27 @@ function ProductForm({
             />
             {errors.stock && <small>Enter valid stock.</small>}
           </div>
-        </div>
 
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            rows={3}
-            placeholder="Product description..."
-            {...register("description", {
-              required: "Description is required",
-            })}
-          />
-          {errors.description && <small>{errors.description.message}</small>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              rows={3}
+              placeholder="Product description..."
+              {...register("description", {
+                required: "Description is required",
+              })}
+            />
+            {errors.description && <small>{errors.description.message}</small>}
+          </div>
 
-        <div className="form-group status-field">
-          <label htmlFor="status">Status</label>
-          <select id="status" {...register("status")}>
-            <option value="available">Available</option>
-            <option value="unavailable">Unavailable</option>
-          </select>
+          <div className="form-group status-field">
+            <label htmlFor="status">Status</label>
+            <select id="status" {...register("status")}>
+              <option value="available">Available</option>
+              <option value="unavailable">Unavailable</option>
+            </select>
+          </div>
         </div>
 
         <div className="form-group">
@@ -217,8 +217,8 @@ function ProductForm({
             {loading
               ? "Saving..."
               : mode === "create"
-              ? "Create Product"
-              : "Update Product"}
+                ? "Create Product"
+                : "Update Product"}
           </button>
         </div>
       </form>
