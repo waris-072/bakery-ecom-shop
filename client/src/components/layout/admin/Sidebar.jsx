@@ -5,7 +5,8 @@ import {
   FaUsers,
   FaSignOutAlt,
   FaBreadSlice,
-  FaUserCircle
+  FaUserCircle,
+  FaTimes
 } from "react-icons/fa";
 
 import { NavLink, useNavigate } from "react-router-dom";
@@ -14,8 +15,7 @@ import "./AdminLayout.css";
 import { useState } from "react";
 import Loader from "./../../loader/Loader";
 
-function Sidebar() {
-
+function Sidebar({ isOpen = true, isMobile = false, onClose }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -28,38 +28,50 @@ function Sidebar() {
     } catch (error) {
       console.error("Logout failed:", error);
     } finally {
-      setLoading(false); // Hide loader
+      setLoading(false);
     }
   };
+
   if (loading) {
-    return (
-      <Loader
-        message="signing out..."
-      />
-    );
+    return <Loader message="signing out..." />;
   }
 
-  return (
-    <aside className="sidebar">
+  // Force sidebar to be visible on desktop
+  const sidebarClasses = `sidebar ${isMobile ? 'mobile' : 'desktop'} ${isOpen ? 'open' : 'closed'}`;
 
-      <div className="sidebar-logo">
-        <FaBreadSlice />
-        <span>BakeryShop</span>
+  return (
+    <aside className={sidebarClasses}>
+      <div className="sidebar-header">
+        <div className="sidebar-logo">
+          <FaBreadSlice />
+          <span>BakeryShop</span>
+        </div>
+        
+        {isMobile && (
+          <button 
+            className="sidebar-close-btn" 
+            onClick={onClose}
+            aria-label="Close menu"
+            type="button"
+          >
+            <FaTimes />
+          </button>
+        )}
       </div>
 
       <nav className="sidebar-nav">
-
- 
-
         <NavLink 
-          to="/admin/Profile"
+          to="/admin/profile"
           end
           className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }
+          onClick={() => {
+            if (isMobile && onClose) onClose();
+          }}
         >
           <FaUserCircle />
-          Profile
+          <span>Profile</span>
         </NavLink>
 
         <NavLink
@@ -68,9 +80,12 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }
+          onClick={() => {
+            if (isMobile && onClose) onClose();
+          }}
         >
           <FaChartPie />
-          Dashboard
+          <span>Dashboard</span>
         </NavLink>
 
         <NavLink
@@ -78,9 +93,12 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }
+          onClick={() => {
+            if (isMobile && onClose) onClose();
+          }}
         >
           <FaBoxOpen />
-          Manage Products
+          <span>Manage Products</span>
         </NavLink>
 
         <NavLink
@@ -88,9 +106,12 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }
+          onClick={() => {
+            if (isMobile && onClose) onClose();
+          }}
         >
           <FaShoppingCart />
-          Manage Orders
+          <span>Manage Orders</span>
         </NavLink>
 
         <NavLink
@@ -98,18 +119,19 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }
+          onClick={() => {
+            if (isMobile && onClose) onClose();
+          }}
         >
           <FaUsers />
-          Customers
+          <span>Manage Customers</span>
         </NavLink>
-
       </nav>
 
-      <button className="logout-btn" onClick={handleLogout}>
+      <button className="logout-btn" onClick={handleLogout} type="button">
         <FaSignOutAlt />
-        Logout
+        <span>Logout</span>
       </button>
-
     </aside>
   );
 }

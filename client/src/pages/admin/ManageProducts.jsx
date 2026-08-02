@@ -42,6 +42,12 @@ function ManageProducts() {
               to: "/admin/products/add",
           },
           clearFilters,
+          sortOptions:[
+            {value: "newest", label:"Newest",},
+            {value: "oldest", label:"Oldest",},
+            {value:"az", label:"A → Z",},
+            {value:"za", label:"Z → A",},
+          ],
       });
   },[ search, sort, ]);
 

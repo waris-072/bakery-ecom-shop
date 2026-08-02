@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaShoppingBag, FaEdit, FaSave, FaTimes, } from "react-icons/fa";
 
 import useAuth from "../../hooks/useAuth";
+import { useOutletContext } from "react-router-dom";
 
 import { NAME_REGEX, PHONE_REGEX, } from "../../utils/validators";
 import "./Admin.css";
@@ -14,57 +15,71 @@ function AdminProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [serverError, setServerError] = useState("");
+  const { setTopbarConfig } = useOutletContext();
+
+  useEffect(() => {
+    setTopbarConfig({
+      title: "Administration-Profile",
+      actionButton: null,
+      search: null,
+      setSearch: null,
+      sort: null,
+      setSort: null,
+      clearFilters: null,
+    });
+    return () => setTopbarConfig({});
+  }, []);
 
   const {
     register,
     handleSubmit,
     reset,
     watch,
-    formState:{
+    formState: {
       errors,
       touchedFields,
       isSubmitting,
       isValid,
     }
   } = useForm({
-    mode:"onChange",
+    mode: "onChange",
   });
 
-  useEffect(()=>{
-    if(user){
+  useEffect(() => {
+    if (user) {
       reset({
-        name:user.name || "",
-        email:user.email || "",
-        phone:user.phone || "",
-        address:user.address || "",
+        name: user.name || "",
+        email: user.email || "",
+        phone: user.phone || "",
+        address: user.address || "",
       });
     }
-  },[user,reset]);
+  }, [user, reset]);
 
   const watchedName = watch("name");
   const watchedPhone = watch("phone");
   const watchedAddress = watch("address");
 
-  const handleEdit = ()=>{
+  const handleEdit = () => {
     setIsEditing(true);
     setSuccessMessage("");
     setServerError("");
   };
 
-  const handleCancel = ()=>{
+  const handleCancel = () => {
     setIsEditing(false);
     setServerError("");
     reset();
   };
 
-  const onSubmit = async(data)=>{
-    try{
+  const onSubmit = async (data) => {
+    try {
       setServerError("");
       setSuccessMessage("");
       await updateUser({
-        name:data.name,
-        phone:data.phone,
-        address:data.address,
+        name: data.name,
+        phone: data.phone,
+        address: data.address,
       });
 
       setSuccessMessage(
@@ -72,7 +87,7 @@ function AdminProfile() {
       );
 
       setIsEditing(false);
-    }catch(error){
+    } catch (error) {
       setServerError(
         error.response?.data?.message ||
         "Failed to update profile."
@@ -95,189 +110,189 @@ function AdminProfile() {
         </div>
 
         {/* Messages */}
-        { successMessage && 
+        {successMessage &&
           <div className="profile-success">
             {successMessage}
           </div>
         }
 
-        { serverError &&
+        {serverError &&
           <div className="profile-error">
             {serverError}
           </div>
         }
 
-        { !isEditing ? (
-            <>
-              {/* Information */}
-              <div className="profile-section">
-                <ProfileItem
-                  icon={<FaEnvelope/>}
-                  title="Email"
-                  value={user?.email}
-                />
-                <ProfileItem
-                  icon={<FaPhone/>}
-                  title="Phone"
-                  value={
-                    user?.phone ||
-                    "Not added yet"
-                  }
-                />
-
-                <ProfileItem
-                  icon={<FaMapMarkerAlt/>}
-                  title="Address"
-                  value={
-                    user?.address ||
-                    "Not added yet"
-                  }
-                />
-              </div>
-
-              {/* Orders */}
-              <div className="orders-box">
-                <FaShoppingBag/>
-                <div>
-                  <h3> Total Orders </h3>
-                  <p> 0 Orders </p>
-                </div>
-              </div>
-
-              <button
-                className="profile-btn"
-                onClick={handleEdit}
-              >
-                <FaEdit/>
-                Edit Profile
-              </button>
-            </>
-          ):(
-            <form
-              className="profile-form"
-              onSubmit={
-                handleSubmit(onSubmit)
-              }
-            >
-              {/* Name */}
-              <div className="profile-input-group">
-                <label> Name </label>
-                <input
-                  className={
-                    errors.name
-                    ?"input-error"
-                    :touchedFields.name && watchedName
-                    ?"input-success"
-                    :""
-                  }
-
-
-                  {...register("name",{
-                    required: "Name is required",
-                    pattern:{
-                      value:NAME_REGEX,
-                      message:"Enter valid name",
-                    }
-                  })}
-                />
-                {errors.name &&
-                  <small> {errors.name.message} </small>
+        {!isEditing ? (
+          <>
+            {/* Information */}
+            <div className="profile-section">
+              <ProfileItem
+                icon={<FaEnvelope />}
+                title="Email"
+                value={user?.email}
+              />
+              <ProfileItem
+                icon={<FaPhone />}
+                title="Phone"
+                value={
+                  user?.phone ||
+                  "Not added yet"
                 }
+              />
+
+              <ProfileItem
+                icon={<FaMapMarkerAlt />}
+                title="Address"
+                value={
+                  user?.address ||
+                  "Not added yet"
+                }
+              />
+            </div>
+
+            {/* Orders */}
+            <div className="orders-box">
+              <FaShoppingBag />
+              <div>
+                <h3> Total Orders </h3>
+                <p> 0 Orders </p>
               </div>
+            </div>
 
-              {/* Email */}
-              <div className="profile-input-group">
-                <label> Email </label>
-                <input disabled {...register("email")} />
-              </div>
+            <button
+              className="profile-btn"
+              onClick={handleEdit}
+            >
+              <FaEdit />
+              Edit Profile
+            </button>
+          </>
+        ) : (
+          <form
+            className="profile-form"
+            onSubmit={
+              handleSubmit(onSubmit)
+            }
+          >
+            {/* Name */}
+            <div className="profile-input-group">
+              <label> Name </label>
+              <input
+                className={
+                  errors.name
+                    ? "input-error"
+                    : touchedFields.name && watchedName
+                      ? "input-success"
+                      : ""
+                }
 
-              {/* Phone */}
-              <div className="profile-input-group">
-                <label> Phone </label>
 
-                <input
-                  className={
-                    errors.phone
+                {...register("name", {
+                  required: "Name is required",
+                  pattern: {
+                    value: NAME_REGEX,
+                    message: "Enter valid name",
+                  }
+                })}
+              />
+              {errors.name &&
+                <small> {errors.name.message} </small>
+              }
+            </div>
+
+            {/* Email */}
+            <div className="profile-input-group">
+              <label> Email </label>
+              <input disabled {...register("email")} />
+            </div>
+
+            {/* Phone */}
+            <div className="profile-input-group">
+              <label> Phone </label>
+
+              <input
+                className={
+                  errors.phone
                     ? "input-error"
                     : touchedFields.phone && watchedPhone
-                    ? "input-success"
-                    : ""
-                  }
-
-                  {...register("phone",{
-                    required: "Phone required",
-
-                    pattern:{
-                      value:PHONE_REGEX,
-                      message: "Invalid phone number"
-                    }
-                  })}
-                />
-
-                {
-                  errors.phone &&
-                  <small> {errors.phone.message} </small>
+                      ? "input-success"
+                      : ""
                 }
 
-              </div>
+                {...register("phone", {
+                  required: "Phone required",
 
-              {/* Address */}
-              <div className="profile-input-group">
-                <label> Address </label>
-                <textarea
-                  className={
-                    errors.address
-                    ?"input-error"
-                    :touchedFields.address && watchedAddress
-                    ?"input-success"
-                    :""
+                  pattern: {
+                    value: PHONE_REGEX,
+                    message: "Invalid phone number"
                   }
+                })}
+              />
 
+              {
+                errors.phone &&
+                <small> {errors.phone.message} </small>
+              }
 
-                  {...register("address",{
-                    required:"Address required",
-                    minLength:{
-                      value:5,
-                      message:"Address too short"
-                    }
-                  })}
-                />
+            </div>
 
-                {
-                  errors.address &&
-                  <small>
-                    {errors.address.message}
-                  </small>
+            {/* Address */}
+            <div className="profile-input-group">
+              <label> Address </label>
+              <textarea
+                className={
+                  errors.address
+                    ? "input-error"
+                    : touchedFields.address && watchedAddress
+                      ? "input-success"
+                      : ""
                 }
 
-              </div>
 
-              <div className="profile-actions">
-
-                <button
-                  type="submit"
-                  disabled={ !isValid || isSubmitting }
-                  className="profile-btn"
-                >
-                  <FaSave/>
-                  {
-                    isSubmitting
-                    ?"Saving..."
-                    :"Save Changes"
+                {...register("address", {
+                  required: "Address required",
+                  minLength: {
+                    value: 5,
+                    message: "Address too short"
                   }
-                </button>
+                })}
+              />
 
-                <button
-                  type="button"
-                  className="cancel-btn"
-                  onClick={handleCancel}
-                >
-                  <FaTimes/>
-                  Cancel
-                </button>
-              </div>
-            </form>
-          )
+              {
+                errors.address &&
+                <small>
+                  {errors.address.message}
+                </small>
+              }
+
+            </div>
+
+            <div className="profile-actions">
+
+              <button
+                type="submit"
+                disabled={!isValid || isSubmitting}
+                className="profile-btn"
+              >
+                <FaSave />
+                {
+                  isSubmitting
+                    ? "Saving..."
+                    : "Save Changes"
+                }
+              </button>
+
+              <button
+                type="button"
+                className="cancel-btn"
+                onClick={handleCancel}
+              >
+                <FaTimes />
+                Cancel
+              </button>
+            </div>
+          </form>
+        )
         }
       </div>
     </div>
@@ -288,7 +303,7 @@ function ProfileItem({
   icon,
   title,
   value
-}){
+}) {
 
   return (
     <div className="profile-item">

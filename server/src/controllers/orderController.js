@@ -2,6 +2,7 @@ import {
   createOrderService,
   getMyOrdersService,
   getAllOrdersService,
+  updateOrderStatusService,
 } from "../services/orderService.js";
 
 export const createOrderController = async (
@@ -62,3 +63,27 @@ export const getAllOrdersController =
       });
     }
   };
+
+export const updateOrderStatusController = async (req, res) => {
+  try {
+    const order = await updateOrderStatusService(
+      req.params.id,
+      req.body.status
+    );
+    res.status(200).json({
+      success: true,
+      message: "Order status updated successfully.",
+      order,
+    });
+  } catch (error) {
+    res.status(
+      error.message === "Order not found"
+        ? 404
+        : 500
+    ).json({
+      success: false,
+      message: error.message,
+    });
+
+  }
+};

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
+import { FaUserCircle, FaSearch, FaBars } from "react-icons/fa";
 import "./AdminLayout.css";
 
 function Topbar({
@@ -8,61 +8,79 @@ function Topbar({
   setSearch,
   sort = "newest",
   setSort,
+  sortOptions = [],
   placeholder = "",
   actionButton = null,
   clearFilters,
+  onMenuToggle,
+  isSidebarOpen = false,
+  isMobile = false,
 }) {
   return (
     <header className="topbar">
-
       <div className="topbar-left">
+        {isMobile && (
+          <button 
+            className="menu-toggle-btn" 
+            onClick={onMenuToggle}
+            aria-label="Toggle menu"
+            type="button"
+          >
+            <FaBars />
+          </button>
+        )}
+
         <h2>{title}</h2>
 
         {setSearch && (
           <div className="search-box">
             <FaSearch />
-
             <input
               type="text"
               value={search}
-              placeholder={placeholder}
+              placeholder={placeholder || "Search..."}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         )}
+      </div>
 
+      <div className="topbar-right">
         {setSort && (
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
             className="sort-select"
           >
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-            <option value="az">A → Z</option>
-            <option value="za">Z → A</option>
+            {(sortOptions.length ? sortOptions : [
+              { value: "newest", label: "Newest" },
+              { value: "oldest", label: "Oldest" },
+              { value: "az", label: "A → Z" },
+              { value: "za", label: "Z → A" }
+            ]).map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         )}
-      </div>
 
-      {clearFilters && (
-        <button
-          className="clear-filter-btn"
-          onClick={clearFilters}
-        >
-          Clear Filters
-        </button>
-      )}
+        {clearFilters && (
+          <button className="clear-filter-btn" onClick={clearFilters}>
+            Clear
+          </button>
+        )}
 
-      {actionButton && (
-          <Link
-              to={actionButton.to}
-              className="topbar-action-btn"
-          >
-              {actionButton.label}
+        {actionButton && (
+          <Link to={actionButton.to} className="topbar-action-btn">
+            {actionButton.label}
           </Link>
-      )}
+        )}
 
+        <button className="user-icon-btn" type="button">
+          <FaUserCircle />
+        </button>
+      </div>
     </header>
   );
 }

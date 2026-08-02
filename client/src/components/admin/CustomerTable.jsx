@@ -14,7 +14,7 @@ function CustomerTable({ customers = [], onView, onDelete }) {
     return (
 
         <div className="table-container">
-            <table className="table">
+            <table className="table customer-table">
                 <thead>
                     <tr>
 

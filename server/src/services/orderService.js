@@ -30,3 +30,15 @@ export const getAllOrdersService = async () => {
         .populate("customer", "name email")
         .sort({ createdAt: -1 });
 };
+
+export const updateOrderStatusService = async (id, status) => {
+    const order = await Order.findById(id);
+
+    if (!order) {
+        throw new Error("Order not found");
+    }
+
+    order.status = status;
+    await order.save();
+    return order;
+};

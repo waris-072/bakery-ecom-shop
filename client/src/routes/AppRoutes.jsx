@@ -10,10 +10,10 @@ import Dashboard from "../pages/admin/Dashboard";
 import AdminProfile from "../pages/admin/AdminProfile";
 import ManageCategories from "../pages/admin/ManageCategories";
 import ManageProducts from "../pages/admin/ManageProducts";
-import Orders from "../pages/admin/Orders";
+import ManageOrders from "../pages/admin/ManageOrders";
 import AddProduct from "../pages/admin/AddProduct";
 import EditProduct from "../pages/admin/EditProduct";
-import Customers from "../pages/admin/Customers"
+import ManageCustomers from "../pages/admin/ManageCustomers"
 // Customer Components
 import Home from "../pages/customer/Home";
 import Profile from "../pages/customer/Profile";
@@ -67,12 +67,12 @@ function AppRoutes() {
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/Profile" element={<AdminProfile />} />
           <Route path="/admin/categories" element={<ManageCategories />} />
-          <Route path="/admin/orders" element={<Orders />} />
+          <Route path="/admin/orders" element={<ManageOrders />} />
 
           <Route path="/admin/products" element={<ManageProducts />} />
           <Route path="/admin/products/add" element={<AddProduct />} />
           <Route path="/admin/products/edit/:id" element={<EditProduct />} />
-          <Route path="/admin/customers" element={<Customers />} />
+          <Route path="/admin/customers" element={<ManageCustomers />} />
 
 
 

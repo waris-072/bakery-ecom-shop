@@ -8,7 +8,7 @@ import ViewCustomerModal from "../../components/admin/ViewCustomerModal";
 
 
 
-function Customers() {
+function ManageCustomers() {
 
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,6 +64,12 @@ function Customers() {
       placeholder: "Search customers...",
       actionButton: null,
       clearFilters,
+      sortOptions:[
+        {value: "newest", label:"Newest",},
+        {value: "oldest", label:"Oldest",},
+        {value:"az", label:"A → Z",},
+        {value:"za", label:"Z → A",},
+      ],
     });
 
     return () => setTopbarConfig({});
@@ -131,4 +137,4 @@ function Customers() {
   );
 }
 
-export default Customers;
+export default ManageCustomers;
