@@ -4,7 +4,7 @@ import Loader from "../../components/loader/Loader";
 import CustomerTable from "../../components/admin/CustomerTable";
 import { getCustomers, deleteCustomer } from "../../services/userService";
 import ConfirmModal from "../../components/admin/ConfirmModal";
-import ViewCustomerModal from "../../components/admin/ViewCustomerModal";
+import ViewCustomerModal from "../../components/admin/viewCustomerModal";
 
 
 
