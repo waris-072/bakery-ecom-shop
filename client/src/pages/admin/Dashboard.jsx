@@ -71,7 +71,7 @@ function Dashboard() {
   }, [orders]);
 
   const recentOrders = useMemo(() => {
-    return orders
+    return [...orders]
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       .slice(0, 5);
   }, [orders]);
@@ -202,8 +202,8 @@ function Dashboard() {
                       </td>
                       <td>
                         <div className="customer-info">
-                          <span className="customer-name">{order.customer.name || "Deleted User"}</span>
-                          <span className="customer-email">{order.customer.email || "-"}</span>
+                          <span className="customer-name">{order.customer?.name || "Deleted User"}</span>
+                          <span className="customer-email">{order.customer?.email || "-"}</span>
                         </div>
                       </td>
                       <td className="order-total">
