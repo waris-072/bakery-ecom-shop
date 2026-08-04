@@ -73,7 +73,7 @@ function OrderTable({ orders = [], onView }) {
                                 <div className="customer-info">
 
                                     <strong>
-                                        {order.customer.name}
+                                        {order.customer?.name || "Deleted User"}
                                     </strong>
 
                                 </div>
