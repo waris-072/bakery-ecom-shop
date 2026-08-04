@@ -1,5 +1,5 @@
 import Order from "../models/Order.js";
-import User from "../models/User.js";
+import User from "../models/user.js";
 
 export const createOrderService = async ( userId, data ) => {
     const { phone, address, products, subtotal, shipping, total, } = data;
