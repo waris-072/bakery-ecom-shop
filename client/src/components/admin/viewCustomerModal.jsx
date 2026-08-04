@@ -15,7 +15,7 @@ function ViewCustomerModal({
 
                 <h3>Customer Details</h3>
 
-                <p><strong>Name:</strong> {customer.name || "-"}</p>
+                <p><strong>Name:</strong> {customer.name || "Deleted User"}</p>
 
                 <p><strong>Email:</strong> {customer.email || "-"}</p>
 

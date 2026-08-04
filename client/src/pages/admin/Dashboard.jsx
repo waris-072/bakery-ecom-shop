@@ -202,8 +202,8 @@ function Dashboard() {
                       </td>
                       <td>
                         <div className="customer-info">
-                          <span className="customer-name">{order.customer.name}</span>
-                          <span className="customer-email">{order.customer.email}</span>
+                          <span className="customer-name">{order.customer.name || "Deleted User"}</span>
+                          <span className="customer-email">{order.customer.email || "-"}</span>
                         </div>
                       </td>
                       <td className="order-total">
