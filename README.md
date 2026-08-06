@@ -2,7 +2,7 @@
 
 A modern **full-stack MERN Bakery E-Commerce application** built with a customer-first shopping experience and a complete admin management system. The application enables customers to browse bakery products, manage their cart, place orders securely, and track their purchases, while administrators can manage products, customers, and orders through a dedicated dashboard.
 
-> 🚧 **Deployment Status:** Not yet but soon.
+> 🔥 **Bakery shop (Live):** https://bakeriesshop.netlify.app/
 
 ---
 
